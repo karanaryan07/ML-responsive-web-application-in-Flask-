@@ -1,4 +1,4 @@
-
+#code started
 
 import os
 import uuid
@@ -14,6 +14,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 model = load_model(os.path.join(BASE_DIR , 'newModelWebApp.hdf5'))
 
 
+#function to accept the file name
 ALLOWED_EXT = set(['jpg' , 'jpeg' , 'png' , 'jfif'])
 def allowed_file(filename):
     return '.' in filename and \
@@ -21,7 +22,7 @@ def allowed_file(filename):
 
 classes = ['airplane' ,'automobile', 'bird' , 'cat' , 'deer' ,'dog' ,'frog', 'horse' ,'ship' ,'truck']
 
-
+#function to predict the result of the file
 def predict_result(filename , model):
 	img = load_img(filename , target_size = (32 , 32))
 	img = img_to_array(img)
@@ -50,11 +51,12 @@ def predict_result(filename , model):
 
 
 
-
+#decorator for the default home page
 @app.route('/')
 def home():
 		return render_template("index.html")
 
+#function to calculate result and rendering the result	
 @app.route('/success' , methods = ['GET' , 'POST'])
 def success():
 	error = ''
